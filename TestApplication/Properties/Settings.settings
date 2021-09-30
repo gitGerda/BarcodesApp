@@ -3,7 +3,19 @@
   <Profiles />
   <Settings>
     <Setting Name="ComPort" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Com1TEst</Value>
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="Server" Type="System.String" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="DataBase" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="User" Type="System.String" Scope="User">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
+    <Setting Name="Pwd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">5</Value>
     </Setting>
   </Settings>
 </SettingsFile>

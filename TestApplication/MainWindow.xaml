@@ -1,9 +1,10 @@
-﻿<Window x:Class="NiceLabel.SDK.DemoApp.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="NiceLabel.SDK.DemoApp.MainWindow"
         Style="{StaticResource MainWindowStyle}"
-        WindowStartupLocation="CenterScreen" Title="BarcodesApp" Topmost="True" >
-    <Grid FocusManager.FocusedElement="{Binding ElementName=LabelFileNameTextBox}">
+        WindowStartupLocation="CenterScreen" Title="BarcodesApp" Topmost="True" Loaded="Window_Loaded" >
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -18,6 +19,7 @@
                 <Image Source="pack://siteoforigin:,,,/Resources/logo-nicelabel.png" Height="48" Margin="0 4 0 0" RenderOptions.BitmapScalingMode="HighQuality" />
                 <!--<TextBlock Text="{Binding ViewModelName}" Foreground="White" FontWeight="SemiBold" FontSize="26" VerticalAlignment="Center" />-->
                 <TextBlock Text="BarcodesApp" Foreground="White" FontWeight="SemiBold" FontSize="26" VerticalAlignment="Center" />
+
             </StackPanel>
         </Border>
 
@@ -45,7 +47,7 @@
                          Margin="0 0 5 0"
                          Height="23"
                          IsReadOnly="True"
-                         Text="{Binding Path=LabelFileNameOnly, Mode=OneWay}"
+                         Text="{Binding LabelFileNameOnly, Mode=OneWay}"
                          VerticalContentAlignment="Center" />
                 <Button Grid.Column="2"
                         Grid.Row="0"
@@ -54,7 +56,7 @@
                         Width="100"
                         HorizontalAlignment="Left"
                         Command="{Binding BrowseForLabelCommand}" />
-                
+
                 <Label Grid.Column="0"
                        Grid.Row="1"
                        Margin="0 0 5 0"
@@ -162,7 +164,7 @@
                     <StackPanel Grid.Column="2">
                         <Label Content="Variable Value"
                            Style="{StaticResource SectionHeaderLabelStyle}" />
-                        
+
                         <TextBox Margin="5 0 5 0"
                              Height="23"
                              TextWrapping="Wrap"
@@ -178,6 +180,8 @@
                             Margin="5 0 5 5"
                             Width="150"
                             Command="{Binding OpenLoadVariableValuesWindowCommand}" />
+                        <Button x:Name="BtnSettings" Content="Настройки" Height="47" Click="BtnSettings_Click"/>
+                        <TextBox x:Name="tb_scaner" Height="31" TextWrapping="Wrap" Text="TextBox" Margin="0,0,10,0"/>
                     </StackPanel>
                 </Grid>
             </DockPanel>
@@ -256,12 +260,12 @@
                                Style="{StaticResource SectionHeaderLabelStyle}" />
                         <CheckBox  DockPanel.Dock="Right"
                                    Margin="0 0 5 0"
-                                   IsChecked="{Binding Path=PreviewToFile}"
+                                   IsChecked="{Binding PreviewToFile}"
                                    Content="_Use temporary file for label preview"
                                    VerticalAlignment="Center" />
                         <CheckBox  DockPanel.Dock="Right"
                                    Margin="0 0 5 0"
-                                   IsChecked="{Binding Path=ShowSampleValues}"
+                                   IsChecked="{Binding ShowSampleValues}"
                                    Content="_Show sample values for data sources"
                                    VerticalAlignment="Center" />
                     </DockPanel>
@@ -270,7 +274,7 @@
                             BorderThickness="1"
                             Grid.Row="2"
                             Margin="5 0 5 5">
-                        <Image Source="{Binding Path=Preview }"
+                        <Image Source="{Binding Preview}"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center" />
                     </Border>
@@ -310,10 +314,10 @@
                            Content="Printer:" />
                         <ComboBox Grid.Column="1"
                               Grid.Row="0"
-                              ItemsSource="{Binding Path=Printers}"
+                              ItemsSource="{Binding Printers}"
                               Height="23"
                               DisplayMemberPath="Name"
-                              SelectedItem="{Binding Path=SelectedPrinter, Mode=TwoWay}" />
+                              SelectedItem="{Binding SelectedPrinter, Mode=TwoWay}" />
 
                         <Label Grid.Column="0"
                            Grid.Row="1"
@@ -419,6 +423,6 @@
                 </DockPanel>
             </Grid>
         </Border>
-        
+
     </Grid>
 </Window>

@@ -49,3 +49,6 @@ A:\WORK\PROJECTS\BarcodesApp\sample\TestApplication\obj\Debug\BarcodesAPP.g.reso
 A:\WORK\PROJECTS\BarcodesApp\sample\TestApplication\obj\Debug\BarcodesAPP.exe
 A:\WORK\PROJECTS\BarcodesApp\sample\TestApplication\obj\Debug\BarcodesAPP.pdb
 A:\WORK\PROJECTS\BarcodesApp\sample\TestApplication\bin\Debug\BarcodesAPP.exe.config
+A:\WORK\PROJECTS\BarcodesApp\sample\TestApplication\obj\Debug\WindowSettings.g.cs
+A:\WORK\PROJECTS\BarcodesApp\sample\TestApplication\obj\Debug\BarcodesAPP_MarkupCompile.lref
+A:\WORK\PROJECTS\BarcodesApp\sample\TestApplication\obj\Debug\WindowSettings.baml

@@ -8,6 +8,8 @@ namespace NiceLabel.SDK.DemoApp
 {
     using System.Windows;
     using System.IO.Ports;
+    using System.Threading;
+    using System.Windows.Threading;
 
     /// <summary>
     /// Interaction logic for MainWindow Window.
@@ -19,6 +21,7 @@ namespace NiceLabel.SDK.DemoApp
         /// </summary>
 
         SerialPort _serialPort;
+        private delegate void SetTextDeleg(string text);
 
         public MainWindow()
         {
@@ -26,12 +29,62 @@ namespace NiceLabel.SDK.DemoApp
 
             this.DataContext = new MainWindowViewModel();
 
-            //string f = Properties.Settings.Default.ComPort;
-
-            //Properties.Settings.Default.ComPort = "Test2";
-            //Properties.Settings.Default.Save();
-
-            //f= Properties.Settings.Default.ComPort;
         }
+
+        private void BtnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            WindowSettings WSett = new WindowSettings();
+
+            string CurrComPort = Properties.Settings.Default.ComPort;
+
+            WSett.ShowDialog();
+
+            if (CurrComPort != Properties.Settings.Default.ComPort)
+            {
+                if (_serialPort.IsOpen)
+                {
+                    _serialPort.Close();
+                }
+                OpenComPort();
+            }
+        }
+
+        public void sp_DataRecieved(object sender, SerialDataReceivedEventArgs e)
+        {
+            Thread.Sleep(500);
+
+            SerialPort sp = (SerialPort)sender;
+            string indata = sp.ReadExisting();
+
+            this.Dispatcher.BeginInvoke(new SetTextDeleg(si_DataReceived), new object[] { indata });
+        }
+
+        public void si_DataReceived(string data)
+        {
+            tb_scaner.Text = data;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            OpenComPort();
+        }
+
+        public void OpenComPort() 
+        {
+            try
+            {
+                _serialPort = new SerialPort(Properties.Settings.Default.ComPort);
+                _serialPort.Handshake = Handshake.None;
+                _serialPort.DataReceived += new SerialDataReceivedEventHandler(sp_DataRecieved);
+                _serialPort.WriteTimeout = 500;
+
+                _serialPort.Open();
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось подключить сканер штрихкодов.");
+            }
+        }
+
     }
 }

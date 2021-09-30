@@ -91,6 +91,9 @@
     <Compile Include="ViewModel\BrowseDocumentStorageViewModel.cs" />
     <Compile Include="ViewModel\LoadVariableValuesViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="WindowSettings.xaml.cs">
+      <DependentUpon>WindowSettings.xaml</DependentUpon>
+    </Compile>
     <Page Include="Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -117,6 +120,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\PrintToGraphicsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
