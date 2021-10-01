@@ -46,7 +46,8 @@ namespace NiceLabel.SDK.DemoApp
                     _serialPort.Close();
                 }
                 OpenComPort();
-            }
+            }  
+            
         }
 
         public void sp_DataRecieved(object sender, SerialDataReceivedEventArgs e)

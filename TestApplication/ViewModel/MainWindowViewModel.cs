@@ -1214,6 +1214,17 @@ namespace NiceLabel.SDK
             {
                 this.LabelFileName = openDialog.FileName;
                 this.Label = this.PrintEngine.OpenLabel(this.LabelFileName);
+                try
+                {
+                    this.Label.Variables["desc"].SetValue("Test");
+
+                    this.UpdateVariableValues();
+                    this.NotifyPropertyChanged("Preview");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
