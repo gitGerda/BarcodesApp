@@ -47,6 +47,7 @@ namespace NiceLabel.SDK.DemoApp
 
             connection = new SqlConnection(connectionString);
             BarcodesTable = new DataTable();
+
         }
 
         private void BtnSettings_Click(object sender, RoutedEventArgs e)
@@ -140,7 +141,7 @@ namespace NiceLabel.SDK.DemoApp
             if(checkBox_trans.IsChecked == true)
             {
                 string sql = "select Артикул,НаименованиеПолное,ЕденицаИзмерения,Количество,Штрихкод from NiceLabel where Артикул LIKE '" +
-                                tb_findBarcode.Text + "%';";
+                                tb_findBarcode.Text + "%' and Количество >1;";
                 command = new SqlCommand(sql, connection);
                 adapter = new SqlDataAdapter(command);
 
@@ -172,10 +173,34 @@ namespace NiceLabel.SDK.DemoApp
             {
                 MessageBox.Show("Не выбран тип этикетки!", "Предупреждение");
                 tb_findBarcode.Text = "";
-            }
+            }  
+        }
+
+        private void dataGrid_barcodes_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+            System.Windows.Controls.TextBlock art = dataGrid_barcodes.Columns[0].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
+            System.Windows.Controls.TextBlock name = dataGrid_barcodes.Columns[1].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
+            System.Windows.Controls.TextBlock count = dataGrid_barcodes.Columns[3].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
+            System.Windows.Controls.TextBlock barcode = dataGrid_barcodes.Columns[4].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
 
             
-            
+            int mode = 0;
+
+            if (checkBox_trans.IsChecked == true)
+            {
+                mode = 0;
+            }
+            else if (checkBox_individual.IsChecked==true)
+            {
+                mode = 1;
+            }
+            else
+            {
+                mode = 2;
+            }
+
+            NiceLabel.SDK.MainWindowViewModel.BarcodeChoose(name.Text,art.Text, barcode.Text, System.Convert.ToInt32(count.Text),mode,(NiceLabel.SDK.MainWindowViewModel)DataContext);
         }
     }
 }

@@ -1499,5 +1499,48 @@ namespace NiceLabel.SDK
         {
             
         }
+
+        public static void BarcodeChoose(string name, string art, string barcode, int count,int mode, NiceLabel.SDK.MainWindowViewModel f)
+        {
+            f.DrawLabel(name, art, barcode, count, mode);
+        }
+
+        public void DrawLabel(string name, string art, string barcode, int count, int mode)
+        {
+            if(mode == 0)
+            {
+                this.LabelFileName = Properties.Settings.Default.PathTransLabel;
+            }
+            else if(mode == 1)
+            {
+                this.LabelFileName = Properties.Settings.Default.PathIndividualLabel;
+            }
+            else
+            {
+                this.LabelFileName = Properties.Settings.Default.PathIndividualWYLabel;
+            }
+
+            this.Label = this.PrintEngine.OpenLabel(this.LabelFileName);
+            try
+            {
+                this.Label.Variables["art"].SetValue(art);
+                this.Label.Variables["barcode"].SetValue(barcode);
+
+                if (mode == 0)
+                {
+                    this.Label.Variables["count"].SetValue(Convert.ToString(count));
+                }
+
+                this.Label.Variables["name"].SetValue(name);
+
+                this.UpdateVariableValues();
+                this.NotifyPropertyChanged("Preview");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
     }
 }

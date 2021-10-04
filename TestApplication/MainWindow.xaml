@@ -17,7 +17,7 @@
                 <Image Source="pack://siteoforigin:,,,/Resources/logo-nicelabel.png" Height="48" Margin="0 4 0 0" RenderOptions.BitmapScalingMode="HighQuality" />
                 <!--<TextBlock Text="{Binding ViewModelName}" Foreground="White" FontWeight="SemiBold" FontSize="26" VerticalAlignment="Center" />-->
                 <TextBlock Text="BarcodesApp" Foreground="White" FontWeight="SemiBold" FontSize="26" VerticalAlignment="Center" />
-                <Button x:Name="BtnSettings" Content="Настройки" Height="Auto" Click="BtnSettings_Click" Margin="0,21,0,14" RenderTransformOrigin="0.5,0.5" Width="42" FontStyle="Italic" HorizontalContentAlignment="Center"/>
+                <Button x:Name="BtnSettings" Content="Настройки" Height="Auto" Click="BtnSettings_Click" Margin="0,21,0,14" RenderTransformOrigin="0.5,0.5" Width="42" HorizontalContentAlignment="Center"/>
 
             </StackPanel>
         </Border>
@@ -309,7 +309,7 @@
                         <RowDefinition Height="0" />
                     </Grid.RowDefinitions>
                     <TextBox x:Name="tb_findBarcode" Margin="10,0,0,0" FontSize="20" Grid.Row="0" HorizontalContentAlignment="Center" FontWeight="Bold" TextDecorations="{x:Null}" KeyDown="tb_findBarcode_KeyDown" HorizontalAlignment="Left" Width="829" VerticalAlignment="Top" Height="29"/>
-                    <DataGrid x:Name="dataGrid_barcodes" Grid.Row="1" Margin="10,10,0,0" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Width="829" VerticalAlignment="Top" Height="317"/>
+                    <DataGrid x:Name="dataGrid_barcodes" Grid.Row="1" Margin="10,10,0,0" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Width="829" VerticalAlignment="Top" Height="317" IsReadOnly="True" MouseDoubleClick="dataGrid_barcodes_MouseDoubleClick"/>
                 </Grid>
 
                 <Label
