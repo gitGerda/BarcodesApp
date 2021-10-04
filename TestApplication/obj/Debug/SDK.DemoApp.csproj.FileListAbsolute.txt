@@ -57,7 +57,6 @@ A:\WORK\PROJECTS\BarcodesApp\GitRepositoryBarcodesApp\BarcodesAPP\TestApplicatio
 A:\WORK\PROJECTS\BarcodesApp\GitRepositoryBarcodesApp\BarcodesAPP\TestApplication\bin\Debug\BarcodesAPP.exe.config
 A:\WORK\PROJECTS\BarcodesApp\GitRepositoryBarcodesApp\BarcodesAPP\TestApplication\bin\Debug\BarcodesAPP.exe
 A:\WORK\PROJECTS\BarcodesApp\GitRepositoryBarcodesApp\BarcodesAPP\TestApplication\bin\Debug\BarcodesAPP.pdb
-A:\WORK\PROJECTS\BarcodesApp\GitRepositoryBarcodesApp\BarcodesAPP\TestApplication\obj\Debug\SDK.DemoApp.csproj.AssemblyReference.cache
 A:\WORK\PROJECTS\BarcodesApp\GitRepositoryBarcodesApp\BarcodesAPP\TestApplication\obj\Debug\Styles.baml
 A:\WORK\PROJECTS\BarcodesApp\GitRepositoryBarcodesApp\BarcodesAPP\TestApplication\obj\Debug\View\BrowseDocumentStorageWindow.baml
 A:\WORK\PROJECTS\BarcodesApp\GitRepositoryBarcodesApp\BarcodesAPP\TestApplication\obj\Debug\View\LoadVariableValuesWindow.baml
@@ -82,3 +81,4 @@ A:\WORK\PROJECTS\BarcodesApp\GitRepositoryBarcodesApp\BarcodesAPP\TestApplicatio
 A:\WORK\PROJECTS\BarcodesApp\GitRepositoryBarcodesApp\BarcodesAPP\TestApplication\obj\Debug\BarcodesAPP.pdb
 A:\WORK\PROJECTS\BarcodesApp\GitRepositoryBarcodesApp\BarcodesAPP\TestApplication\bin\Debug\SDK.NET.Interface.dll
 A:\WORK\PROJECTS\BarcodesApp\GitRepositoryBarcodesApp\BarcodesAPP\TestApplication\bin\Debug\SDK.NET.Interface.xml
+A:\WORK\PROJECTS\BarcodesApp\GitRepositoryBarcodesApp\BarcodesAPP\TestApplication\obj\Debug\SDK.DemoApp.csproj.AssemblyReference.cache

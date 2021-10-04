@@ -82,5 +82,41 @@ namespace NiceLabel.SDK.Properties {
                 this["Pwd"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PathTransLabel {
+            get {
+                return ((string)(this["PathTransLabel"]));
+            }
+            set {
+                this["PathTransLabel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PathIndividualLabel {
+            get {
+                return ((string)(this["PathIndividualLabel"]));
+            }
+            set {
+                this["PathIndividualLabel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PathIndividualWYLabel {
+            get {
+                return ((string)(this["PathIndividualWYLabel"]));
+            }
+            set {
+                this["PathIndividualWYLabel"] = value;
+            }
+        }
     }
 }

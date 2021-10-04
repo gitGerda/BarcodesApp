@@ -20,6 +20,7 @@ namespace NiceLabel.SDK
     /// </summary>
     public class MainWindowViewModel : BaseViewModel
     {
+
         #region Private Fields
 
         /// <summary>
@@ -1493,5 +1494,10 @@ namespace NiceLabel.SDK
         }
 
         #endregion
+
+        public static void BarcodeUP(string barcode)
+        {
+            
+        }
     }
 }

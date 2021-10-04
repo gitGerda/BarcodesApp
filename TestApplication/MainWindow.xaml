@@ -3,14 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="NiceLabel.SDK.DemoApp.MainWindow"
         Style="{StaticResource MainWindowStyle}"
-        WindowStartupLocation="CenterScreen" Title="BarcodesApp" Topmost="True" Loaded="Window_Loaded" >
+        WindowStartupLocation="CenterScreen" Title="BarcodesApp" Topmost="True" Loaded="Window_Loaded" Width="1520.85" ResizeMode="CanMinimize" Height="770" >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="199*" />
-            <RowDefinition Height="199*" />
+            <RowDefinition Height="63*" MinHeight="63" />
+            <RowDefinition Height="678*" />
+            <RowDefinition Height="28" />
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0"
@@ -19,14 +17,15 @@
                 <Image Source="pack://siteoforigin:,,,/Resources/logo-nicelabel.png" Height="48" Margin="0 4 0 0" RenderOptions.BitmapScalingMode="HighQuality" />
                 <!--<TextBlock Text="{Binding ViewModelName}" Foreground="White" FontWeight="SemiBold" FontSize="26" VerticalAlignment="Center" />-->
                 <TextBlock Text="BarcodesApp" Foreground="White" FontWeight="SemiBold" FontSize="26" VerticalAlignment="Center" />
+                <Button x:Name="BtnSettings" Content="Настройки" Height="Auto" Click="BtnSettings_Click" Margin="0,21,0,14" RenderTransformOrigin="0.5,0.5" Width="42" FontStyle="Italic" HorizontalContentAlignment="Center"/>
 
             </StackPanel>
         </Border>
 
         <!-- Resource Info -->
-        <Border Grid.Row="1"
-                Style="{StaticResource SectionBorderStyle}" >
-            <Grid >
+        <Border
+                Style="{StaticResource SectionBorderStyle}" Margin="-10,-1043,314,592" >
+            <Grid Margin="-8,6,8,-6" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -50,9 +49,8 @@
                          Text="{Binding LabelFileNameOnly, Mode=OneWay}"
                          VerticalContentAlignment="Center" />
                 <Button x:Name="OpenBtn" Grid.Column="2"
-                        Grid.Row="0"
                         Content="Open..."
-                        Margin="0 0 5 0"
+                        Margin="20,115,0,115"
                         Width="100"
                         HorizontalAlignment="Left"
                         Command="{Binding BrowseForLabelCommand}" />
@@ -74,8 +72,8 @@
         </Border>
 
         <!-- Variable Info -->
-        <Border Grid.Row="2"
-                Style="{StaticResource SectionBorderStyle}" >
+        <Border
+                Style="{StaticResource SectionBorderStyle}" Margin="0,-328,0,259" >
             <DockPanel>
 
                 <Grid>
@@ -161,7 +159,7 @@
                         </Grid>
                     </StackPanel>
 
-                    <StackPanel Grid.Column="2">
+                    <StackPanel Grid.Column="2" Margin="0,0,0,-123">
                         <Label Content="Variable Value"
                            Style="{StaticResource SectionHeaderLabelStyle}" />
 
@@ -180,7 +178,6 @@
                             Margin="5 0 5 5"
                             Width="150"
                             Command="{Binding OpenLoadVariableValuesWindowCommand}" />
-                        <Button x:Name="BtnSettings" Content="Настройки" Height="47" Click="BtnSettings_Click"/>
                         <TextBox x:Name="tb_scaner" Height="31" TextWrapping="Wrap" Text="TextBox" Margin="0,0,10,0"/>
                     </StackPanel>
                 </Grid>
@@ -188,7 +185,7 @@
         </Border>
 
         <!-- Label Info -->
-        <Border Grid.Row="3"
+        <Border Grid.Row="1"
                 Style="{StaticResource SectionBorderStyle}" >
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -196,11 +193,11 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Orientation="Vertical"
+                <!--<StackPanel Orientation="Vertical"
                             Grid.Column="0">
                     <Label Content="Label Information"
                            Style="{StaticResource SectionHeaderLabelStyle}" />
-                    <Grid>
+                    <Grid Height="190" Margin="322,0,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="90" />
                             <ColumnDefinition Width="*" />
@@ -252,11 +249,11 @@
                                Grid.Row="5"
                                Content="{Binding Gap}" />
                     </Grid>
-                </StackPanel>
-                <DockPanel Grid.Column="1">
+                </StackPanel>-->
+                <DockPanel Grid.Column="1" Margin="106,0,0,0">
                     <DockPanel DockPanel.Dock="Top"
                                LastChildFill="False">
-                        <Label Content="Preview"
+                        <Label Content="Предпросмотр"
                                Style="{StaticResource SectionHeaderLabelStyle}" />
                         <CheckBox  DockPanel.Dock="Right"
                                    Margin="0 0 5 0"
@@ -273,7 +270,7 @@
                     <Border BorderBrush="Gray"
                             BorderThickness="1"
                             Grid.Row="2"
-                            Margin="5 0 5 5">
+                            Margin="5,0,10,5" DockPanel.Dock="Bottom">
                         <Image Source="{Binding Preview}"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center" />
@@ -283,146 +280,150 @@
         </Border>
 
         <!-- Printing Options -->
-        <Border Grid.Row="4"
+        <Border Grid.Row="1"
                 Style="{StaticResource SectionBorderStyle}" >
-            <Grid >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+            <StackPanel Margin="2,6,0,5" HorizontalAlignment="Left">
+                <Label Content="Тип этикетки"
+                       Style="{StaticResource SectionHeaderLabelStyle}" HorizontalAlignment="Left" FontSize="18"/>
+                <Grid HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <CheckBox x:Name="checkBox_trans" Margin="20,-6,-35,0" Grid.Row="0" Content="Транспортная коробка" Width="258" Grid.ColumnSpan="2" HorizontalAlignment="Left" Click="checkBox_trans_Click" Height="21" VerticalAlignment="Top" FontSize="15" IsChecked="True"/>
+                    <CheckBox x:Name="checkBox_individual" Margin="20,0,-72,0" Grid.Row="1" Content="Индивидуальная коробка" Width="295" Grid.ColumnSpan="2" HorizontalAlignment="Left" Click="checkBox_individual_Click" FontSize="15"/>
+                    <CheckBox x:Name="checkBox_individualWY" Margin="20,0,-18,0" Grid.Row="2" Content="Индивидуальная без упаковки" Width="241" Grid.ColumnSpan="2" HorizontalAlignment="Left" Click="checkBox_individualWY_Click" FontSize="15"/>
+                </Grid>
 
-                <StackPanel Margin="0 0 10 0">
-                    <Label DockPanel.Dock="Top"
-                       Content="Printing"
-                       Style="{StaticResource SectionHeaderLabelStyle}" />
-                    <Grid Margin="0 0 0 0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="90" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
+                <Label Content="Поиск"
+                       Style="{StaticResource SectionHeaderLabelStyle}" HorizontalAlignment="Left" FontSize="18"/>
+                <Grid Height="361" Width="849">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" MinHeight="33" />
+                        <RowDefinition Height="Auto" MinHeight="327" />
+                        <RowDefinition Height="0" />
+                    </Grid.RowDefinitions>
+                    <TextBox x:Name="tb_findBarcode" Margin="10,0,0,0" FontSize="20" Grid.Row="0" HorizontalContentAlignment="Center" FontWeight="Bold" TextDecorations="{x:Null}" KeyDown="tb_findBarcode_KeyDown" HorizontalAlignment="Left" Width="829" VerticalAlignment="Top" Height="29"/>
+                    <DataGrid x:Name="dataGrid_barcodes" Grid.Row="1" Margin="10,10,0,0" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Width="829" VerticalAlignment="Top" Height="317"/>
+                </Grid>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                <Label
+                       Content="Печать"
+                       Style="{StaticResource SectionHeaderLabelStyle}" HorizontalAlignment="Left" FontSize="18" Height="31" />
+                <Grid Margin="0 0 0 0" Height="117" HorizontalAlignment="Left" Width="837">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="106" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-                        <Label Grid.Column="0"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" MinHeight="62" />
+
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0"
                            Grid.Row="0"
-                           Content="Printer:" />
-                        <ComboBox Grid.Column="1"
+                           Content="Принтер:" HorizontalAlignment="Left" FontSize="15" Width="73" />
+                    <ComboBox Grid.Column="1"
                               Grid.Row="0"
                               ItemsSource="{Binding Printers}"
-                              Height="23"
                               DisplayMemberPath="Name"
-                              SelectedItem="{Binding SelectedPrinter, Mode=TwoWay}" />
+                              SelectedItem="{Binding SelectedPrinter, Mode=TwoWay}" Margin="0,2" HorizontalAlignment="Left" Width="731" />
 
-                        <Label Grid.Column="0"
+                    <Label Grid.Column="0"
                            Grid.Row="1"
-                           Content="Quantity:" />
-                        <TextBox Grid.Column="1"
+                           Content="Количество:" HorizontalAlignment="Left" FontSize="15" Width="94" />
+                    <TextBox Grid.Column="1"
                              Grid.Row="1"
-                             HorizontalAlignment="Left"
-                             Height="23"
                              Text="{Binding Quantity}"
-                             Width="90" />
-                        <CheckBox Content="Print All" 
-                             Grid.Column="2" 
-                             HorizontalAlignment="Left" 
-                             Margin="95,6,0,0" 
+                             Width="90" Margin="0,2" HorizontalAlignment="Left" FontSize="15" />
+                    <CheckBox Content="Print All" 
+                             Grid.Column="1" 
+                             Margin="95,10,0,4" 
                              Grid.Row="1" 
-                             IsChecked="{Binding PrintAll}"
-                             VerticalAlignment="Top"/>
+                             IsChecked="{Binding PrintAll}" Width="61" HorizontalAlignment="Left"/>
 
-                        <Label Grid.Column="0"
+                    <Label Grid.Column="0"
                            Grid.Row="2"
-                           Content="Print:" />
-                        <StackPanel Grid.Column="1"
+                           Content="Действие:" HorizontalAlignment="Left" FontSize="15" Width="78" />
+                    <StackPanel Grid.Column="1"
                                 Grid.Row="2"
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center">
-                            <Button Content="Print"
-                                Command="{Binding PrintLabelCommand}" />
-                            <Button Margin="5 0 0 0"
+                                Orientation="Horizontal" Width="732" HorizontalAlignment="Left" Margin="0,0,-1,5">
+                        <Button Content="Печать"
+                                Command="{Binding PrintLabelCommand}" Height="Auto" Width="728" Background="#FF76D372" FontSize="20" FontWeight="Bold" Margin="0,0,0,10" HorizontalAlignment="Left" />
+                        <Button Margin="5 0 0 0"
                                 Content="Print async"
-                                Command="{Binding PrintAsyncLabelCommand}" />
-                        </StackPanel>
+                                Command="{Binding PrintAsyncLabelCommand}" Visibility="Hidden" />
+                    </StackPanel>
 
-                        <Label Grid.Column="0"
+                    <Label Grid.Column="0"
                            Grid.Row="3"
-                           Content="Session print:" />
-                        <StackPanel Grid.Column="1"
+                           Content="Session print:" Visibility="Hidden" />
+                    <StackPanel Grid.Column="1"
                                 Grid.Row="3"
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center">
-                            <Button Content="Start session"
-                                Command="{Binding SessionPrintStartLabelCommand}" />
-                            <Button Content="Session print"
+                                Orientation="Horizontal" Margin="0,16" Width="280" HorizontalAlignment="Left">
+                        <Button Content="Start session"
+                                Command="{Binding SessionPrintStartLabelCommand}" Visibility="Hidden" />
+                        <Button Content="Session print"
                                 Margin="5 0 5 0"
-                                Command="{Binding SessionPrintLabelCommand}" />
-                            <Button Content="End session"
-                                Command="{Binding SessionPrintEndLabelCommand}" />
-                        </StackPanel>
+                                Command="{Binding SessionPrintLabelCommand}" Visibility="Hidden" />
+                        <Button Content="End session"
+                                Command="{Binding SessionPrintEndLabelCommand}" Visibility="Hidden" />
+                    </StackPanel>
 
-                        <Label Grid.Column="0"
+                    <Label Grid.Column="0"
                            Grid.Row="4"
-                           Content="Graphics:" />
-                        <Button Grid.Column="1"
+                           Content="Graphics:" Visibility="Hidden" />
+                    <Button Grid.Column="1"
                             Grid.Row="4"
                             Content="Print to graphics..."
                             Width="140"
                             HorizontalAlignment="Left"
-                            Command="{Binding OpenPrintToGraphicsWindowCommand}" />
-                    </Grid>
-                </StackPanel>
+                            Command="{Binding OpenPrintToGraphicsWindowCommand}" Visibility="Hidden" Height="Auto" Margin="0,2" />
+                </Grid>
 
-                <DockPanel Grid.Column="1"
-                       Margin="0 0 5 5">
-                    <DockPanel DockPanel.Dock="Top">
-                        <Button DockPanel.Dock="Right"
-                            Content="Clear requests"
-                            Width="100"
-                            Command="{Binding ClearPrintRequestsCommand}" />
-                        <Label Content="Print Requests"
-                           Style="{StaticResource SectionHeaderLabelStyle}" />
-                    </DockPanel>
-                    <ListBox Margin="5 5 0 0"
+            </StackPanel>
+
+        </Border>
+
+        <ListBox Grid.Row="2"
                          ItemsSource="{Binding PrintRequests}"
                          HorizontalContentAlignment="Stretch">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
 
-                                    <TextBlock Grid.Column="0"
+                        <TextBlock Grid.Column="0"
                                            MaxWidth="150"
                                            Text="{Binding LabelName}"
                                            TextTrimming="CharacterEllipsis"
                                            Margin="0 0 10 0" />
-                                    <TextBlock Grid.Column="1"
+                        <TextBlock Grid.Column="1"
                                            Text="{Binding RequestedQuantity}"
                                            Margin="0 0 10 0" />
-                                    <TextBlock Grid.Column="2"
+                        <TextBlock Grid.Column="2"
                                            Text="{Binding PrintJobStatus}"
                                            Margin="0 0 10 0" />
-                                    <TextBlock Grid.Column="3"
+                        <TextBlock Grid.Column="3"
                                            Text="{Binding SpoolJobStatus}" />
-                                </Grid>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </DockPanel>
-            </Grid>
-        </Border>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
 
     </Grid>
 </Window>

@@ -5,14 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NiceLabel.SDK"
         mc:Ignorable="d"
-        Title="Настройки" Height="341" Width="556" ResizeMode="NoResize" Topmost="True" WindowStyle="ToolWindow" Loaded="Window_Loaded">
-    <Grid Margin="0,0,0,39">
+        Title="Настройки" Height="510.166" Width="556" ResizeMode="NoResize" Topmost="True" WindowStyle="ToolWindow" Loaded="Window_Loaded" Icon="NiceLabel.ico" Closing="Window_Closing">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" MinHeight="83" />
-
+            <RowDefinition Height="Auto" MinHeight="159" />
+            <RowDefinition Height="Auto" MinHeight="67" />
+            <RowDefinition Height="Auto" MinHeight="192" />
+            <RowDefinition Height="Auto" MinHeight="93" />
         </Grid.RowDefinitions>
-        <Button Content="Закрыть" HorizontalAlignment="Left" Margin="442,263,0,-47" VerticalAlignment="Top" Width="75" Click="Button_Click" Height="29" Background="#FFC7AB30" FontWeight="Bold"/>
-        <GroupBox Header="Сканер" HorizontalAlignment="Left" Height="65" Margin="10,10,0,0" VerticalAlignment="Top" Width="522" FontSize="15">
+        <Button Content="Закрыть" HorizontalAlignment="Left" Margin="442,11,0,0" VerticalAlignment="Top" Width="90" Click="Button_Click" Height="29" Background="#FFC7AB30" FontWeight="Bold" Grid.Row="3"/>
+        <GroupBox Header="Сканер" HorizontalAlignment="Left" Height="65" Margin="10,0,0,0" VerticalAlignment="Top" Width="522" FontSize="15" Grid.Row="1">
             <Grid HorizontalAlignment="Left" Margin="6,7,-2,3" Width="506">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="87*"/>
@@ -23,7 +25,7 @@
                 <TextBox x:Name="tb_ComPort" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="8,4,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="401" TextChanged="tb_ComPort_TextChanged"/>
             </Grid>
         </GroupBox>
-        <GroupBox Header="База данных" HorizontalAlignment="Left" Height="179" Margin="10,80,0,-114" VerticalAlignment="Top" Width="522" FontSize="15">
+        <GroupBox Header="База данных" HorizontalAlignment="Left" Height="179" Margin="10,10,0,0" VerticalAlignment="Top" Width="522" FontSize="15" Grid.Row="2">
             <Grid HorizontalAlignment="Left" Margin="6,7,-2,-1" Width="506">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="18*"/>
@@ -43,10 +45,35 @@
                 <Label Content="Пароль :                        " HorizontalAlignment="Left" Margin="9,2,0,0" VerticalAlignment="Top" Height="27" Width="61" Grid.Row="3"/>
                 <TextBox x:Name="tb_Db" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="4,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="371" Grid.Row="1" TextChanged="tb_Db_TextChanged"/>
                 <TextBox x:Name="tb_User" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="4,2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="371" Grid.Row="2" TextChanged="tb_User_TextChanged"/>
-                <TextBox x:Name="tb_Pwd" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="371" Grid.Row="3" TextChanged="tb_Pwd_TextChanged"/>
+                <PasswordBox x:Name="tb_Pwd" HorizontalAlignment="Left" Margin="4,5,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.Column="1" Width="371" PasswordChanged="tb_Pwd_PasswordChanged"/>
             </Grid>
         </GroupBox>
-        <Button Content="Проверить соединение с базой данных" HorizontalAlignment="Left" Margin="12,264,0,-98" VerticalAlignment="Top" Width="250" Height="29" Background="#FFB1E079" Click="Button_Click_1"/>
+        <Button Content="Проверить соединение с базой данных" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="250" Height="30" Background="#FFB1E079" Click="Button_Click_1" Grid.Row="3"/>
+        <GroupBox Header="Шаблоны" HorizontalAlignment="Left" Height="143" Margin="10,10,0,0" VerticalAlignment="Top" Width="522" FontSize="15">
+            <Grid HorizontalAlignment="Left" Height="110" Margin="18,5,-2,0" VerticalAlignment="Top" Width="494">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="31*"/>
+                    <RowDefinition Height="32*"/>
+                    <RowDefinition Height="47*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="168*"/>
+                    <ColumnDefinition Width="233*"/>
+                    <ColumnDefinition Width="93*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Content="Транспортная коробка:"/>
+                <Label Grid.Row="1" Content="Индивидуальная коробка:"/>
+                <Label Grid.Row="2" Content="Индивидуальная без&#xA;упаковки:" Margin="0,0,10,-16"/>
+
+                <TextBox x:Name="tb_trans" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" VerticalAlignment="Top" Width="218" MaxLines="2147483647" MinLines="1"/>
+                <TextBox x:Name="tb_individual" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" VerticalAlignment="Top" Width="218"/>
+                <TextBox x:Name="tb_individual_WY" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,6,0,0" VerticalAlignment="Top" Width="218"/>
+                <Button x:Name="btn_trans" Content="Обзор..." Grid.Column="2" HorizontalAlignment="Left" Margin="2,3,0,0" VerticalAlignment="Top" Width="43" Height="26" Click="btn_trans_Click"/>
+                <Button x:Name="btn_indiv" Content="Обзор..." Grid.Column="2" HorizontalAlignment="Left" Margin="2,4,0,0" VerticalAlignment="Top" Width="80" Height="26" Grid.Row="1" Click="btn_indiv_Click"/>
+                <Button x:Name="btn_ind_WY" Content="Обзор..." Grid.Column="2" HorizontalAlignment="Left" Margin="2,4,0,0" VerticalAlignment="Top" Width="80" Height="26" Grid.Row="2" Click="btn_ind_WY_Click"/>
+            </Grid>
+
+        </GroupBox>
 
     </Grid>
 </Window>
