@@ -1265,6 +1265,8 @@ namespace NiceLabel.SDK
         {
             try
             {
+                ClearPrintRequests();
+
                 this.UpdatePrinter();
 
                 IPrintRequest printRequest;

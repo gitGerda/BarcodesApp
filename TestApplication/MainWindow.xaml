@@ -259,12 +259,12 @@
                                    Margin="0 0 5 0"
                                    IsChecked="{Binding PreviewToFile}"
                                    Content="_Use temporary file for label preview"
-                                   VerticalAlignment="Center" />
+                                   VerticalAlignment="Center" Visibility="Hidden" />
                         <CheckBox  DockPanel.Dock="Right"
                                    Margin="0 0 5 0"
                                    IsChecked="{Binding ShowSampleValues}"
                                    Content="_Show sample values for data sources"
-                                   VerticalAlignment="Center" />
+                                   VerticalAlignment="Center" Visibility="Hidden" />
                     </DockPanel>
 
                     <Border BorderBrush="Gray"
@@ -348,7 +348,7 @@
                              Grid.Column="1" 
                              Margin="95,10,0,4" 
                              Grid.Row="1" 
-                             IsChecked="{Binding PrintAll}" Width="61" HorizontalAlignment="Left"/>
+                             IsChecked="{Binding PrintAll}" Width="61" HorizontalAlignment="Left" Visibility="Hidden"/>
 
                     <Label Grid.Column="0"
                            Grid.Row="2"
@@ -393,7 +393,7 @@
 
         </Border>
 
-        <ListBox Grid.Row="2"
+        <ListBox x:Name="lb_printInfo" Grid.Row="2"
                          ItemsSource="{Binding PrintRequests}"
                          HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
@@ -406,18 +406,18 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0"
+                        <TextBlock x:Name="tb_labelName" Grid.Column="0"
                                            MaxWidth="150"
                                            Text="{Binding LabelName}"
                                            TextTrimming="CharacterEllipsis"
                                            Margin="0 0 10 0" />
-                        <TextBlock Grid.Column="1"
+                        <TextBlock x:Name="tb_reqQuant" Grid.Column="1"
                                            Text="{Binding RequestedQuantity}"
                                            Margin="0 0 10 0" />
-                        <TextBlock Grid.Column="2"
+                        <TextBlock x:Name="tb_JobStatus" Grid.Column="2"
                                            Text="{Binding PrintJobStatus}"
                                            Margin="0 0 10 0" />
-                        <TextBlock Grid.Column="3"
+                        <TextBlock x:Name="tb_spoolJobS" Grid.Column="3"
                                            Text="{Binding SpoolJobStatus}" />
                     </Grid>
                 </DataTemplate>
