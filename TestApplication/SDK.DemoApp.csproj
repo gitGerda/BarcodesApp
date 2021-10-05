@@ -179,6 +179,9 @@
   <ItemGroup>
     <Resource Include="NiceLabel.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="1582033554_geometric-landscape-4k_vsthemes_ru-34.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

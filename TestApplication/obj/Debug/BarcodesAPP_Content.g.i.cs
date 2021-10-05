@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("nicelabel.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("1582033554_geometric-landscape-4k_vsthemes_ru-34.jpg")]
 
 
