@@ -85,12 +85,19 @@ namespace NiceLabel.SDK.DemoApp
 
         public void sp_DataRecieved(object sender, SerialDataReceivedEventArgs e)
         {
-            Thread.Sleep(500);
+            try
+            {
+                Thread.Sleep(500);
 
-            SerialPort sp = (SerialPort)sender;
-            string indata = sp.ReadExisting();
+                SerialPort sp = (SerialPort)sender;
+                string indata = sp.ReadExisting();
 
-            this.Dispatcher.BeginInvoke(new SetTextDeleg(si_DataReceived), new object[] { indata });
+                this.Dispatcher.BeginInvoke(new SetTextDeleg(si_DataReceived), new object[] { indata });
+            }
+            catch(System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void si_DataReceived(string data)
@@ -165,127 +172,134 @@ namespace NiceLabel.SDK.DemoApp
 
         private void UpdateTable()
         {
-            bool CanContinue = true;
-            string sql = "";
-
-            string _name="";
-            string _art="";
-            string _barcode="";
-            string _count="";
-            int _mode=0;
-
-            if (checkBox_trans.IsChecked == true)
+            try
             {
+                bool CanContinue = true;
+                string sql = "";
 
-                if (currentBarcode == "")
-                {
-                    sql = "select Артикул,НаименованиеПолное,ЕденицаИзмерения,Количество,Штрихкод from NiceLabel where Артикул LIKE '" +
-                                    tb_findBarcode.Text + "%' and Количество >1;";
-                }
-                else 
-                {
-                    sql = "select Артикул,НаименованиеПолное,ЕденицаИзмерения,Количество,Штрихкод from NiceLabel where Штрихкод='" + currentBarcode + "';";
-                }
-                command = new SqlCommand(sql, connection);
-                adapter = new SqlDataAdapter(command);
+                string _name = "";
+                string _art = "";
+                string _barcode = "";
+                string _count = "";
+                int _mode = 0;
 
-                if (connection.State != ConnectionState.Open)
+                if (checkBox_trans.IsChecked == true)
                 {
-                    try
+
+                    if (currentBarcode == "")
                     {
-                        connection.Open();
+                        sql = "select Артикул,НаименованиеПолное,ЕденицаИзмерения,Количество,Штрихкод from NiceLabel where Артикул LIKE '" +
+                                        tb_findBarcode.Text + "%' and Количество >1;";
                     }
-                    catch (System.Exception ex)
+                    else
                     {
-                        MessageBox.Show(ex.Message);
-                        CanContinue = false;
+                        sql = "select Артикул,НаименованиеПолное,ЕденицаИзмерения,Количество,Штрихкод from NiceLabel where Штрихкод='" + currentBarcode + "';";
                     }
-                }
+                    command = new SqlCommand(sql, connection);
+                    adapter = new SqlDataAdapter(command);
 
-                if (CanContinue)
-                {
-                    BarcodesTable.Clear();
-                    adapter.Fill(BarcodesTable);
-
-                    if(currentBarcode!="" && BarcodesTable.Rows.Count!=0)
+                    if (connection.State != ConnectionState.Open)
                     {
-                        _art = BarcodesTable.Rows[0].ItemArray.GetValue(0).ToString();
-                        _name = BarcodesTable.Rows[0].ItemArray.GetValue(1).ToString();
-                        _count = BarcodesTable.Rows[0].ItemArray.GetValue(3).ToString();
-                        _barcode = BarcodesTable.Rows[0].ItemArray.GetValue(4).ToString();
-
-
-                        tb_findBarcode.Text = _art;
-
-                        NiceLabel.SDK.MainWindowViewModel.BarcodeChoose(_name, _art, _barcode, System.Convert.ToInt32(_count), _mode, (NiceLabel.SDK.MainWindowViewModel)DataContext);
+                        try
+                        {
+                            connection.Open();
+                        }
+                        catch (System.Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                            CanContinue = false;
+                        }
                     }
 
-                    dataGrid_barcodes.ItemsSource = BarcodesTable.DefaultView;
-                }
-            }
-            else if (checkBox_individual.IsChecked == true || checkBox_individualWY.IsChecked == true)
-            {
-                if (checkBox_individual.IsChecked == true) 
-                {
-                    _mode = 1;
-                }
-                else { _mode = 2; }
+                    if (CanContinue)
+                    {
+                        BarcodesTable.Clear();
+                        adapter.Fill(BarcodesTable);
 
-                if(currentBarcode=="")
+                        if (currentBarcode != "" && BarcodesTable.Rows.Count != 0)
+                        {
+                            _art = BarcodesTable.Rows[0].ItemArray.GetValue(0).ToString();
+                            _name = BarcodesTable.Rows[0].ItemArray.GetValue(1).ToString();
+                            _count = BarcodesTable.Rows[0].ItemArray.GetValue(3).ToString();
+                            _barcode = BarcodesTable.Rows[0].ItemArray.GetValue(4).ToString();
+
+
+                            tb_findBarcode.Text = _art;
+
+                            NiceLabel.SDK.MainWindowViewModel.BarcodeChoose(_name, _art, _barcode, System.Convert.ToInt32(_count), _mode, (NiceLabel.SDK.MainWindowViewModel)DataContext);
+                        }
+
+                        dataGrid_barcodes.ItemsSource = BarcodesTable.DefaultView;
+                    }
+                }
+                else if (checkBox_individual.IsChecked == true || checkBox_individualWY.IsChecked == true)
                 {
-                    sql = "select Артикул,НаименованиеПолное,Штрихкод from NiceLabel where Артикул LIKE '" +
-                                tb_findBarcode.Text + "%' and Количество = 1;";
+                    if (checkBox_individual.IsChecked == true)
+                    {
+                        _mode = 1;
+                    }
+                    else { _mode = 2; }
+
+                    if (currentBarcode == "")
+                    {
+                        sql = "select Артикул,НаименованиеПолное,Штрихкод from NiceLabel where Артикул LIKE '" +
+                                    tb_findBarcode.Text + "%' and Количество = 1;";
+                    }
+                    else
+                    {
+                        sql = "select Артикул,НаименованиеПолное,Штрихкод from NiceLabel where Штрихкод='" + currentBarcode + "';";
+                    }
+                    command = new SqlCommand(sql, connection);
+                    adapter = new SqlDataAdapter(command);
+
+                    if (connection.State != ConnectionState.Open)
+                    {
+                        try
+                        {
+                            connection.Open();
+                        }
+                        catch (System.Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                            CanContinue = false;
+                        }
+                    }
+
+                    if (CanContinue)
+                    {
+                        BarcodesTable2.Clear();
+                        adapter.Fill(BarcodesTable2);
+
+                        if (currentBarcode != "" && BarcodesTable2.Rows.Count != 0)
+                        {
+                            _art = BarcodesTable2.Rows[0].ItemArray.GetValue(0).ToString();
+                            _name = BarcodesTable2.Rows[0].ItemArray.GetValue(1).ToString();
+                            _count = "1";
+                            _barcode = BarcodesTable2.Rows[0].ItemArray.GetValue(2).ToString();
+
+
+                            tb_findBarcode.Text = _art;
+
+                            NiceLabel.SDK.MainWindowViewModel.BarcodeChoose(_name, _art, _barcode, System.Convert.ToInt32(_count), _mode, (NiceLabel.SDK.MainWindowViewModel)DataContext);
+                        }
+
+                        dataGrid_barcodes.ItemsSource = BarcodesTable2.DefaultView;
+                    }
                 }
                 else
                 {
-                    sql = "select Артикул,НаименованиеПолное,Штрихкод from NiceLabel where Штрихкод='" + currentBarcode + "';";
-                }
-                command = new SqlCommand(sql, connection);
-                adapter = new SqlDataAdapter(command);
-
-                if (connection.State != ConnectionState.Open)
-                {
-                    try
-                    {
-                        connection.Open();
-                    }
-                    catch (System.Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                        CanContinue = false;
-                    }
+                    MessageBox.Show("Не выбран тип этикетки!", "Предупреждение");
+                    tb_findBarcode.Text = "";
                 }
 
-                if (CanContinue)
+                if (currentBarcode != "")
                 {
-                    BarcodesTable2.Clear();
-                    adapter.Fill(BarcodesTable2);
-
-                    if (currentBarcode != "" && BarcodesTable2.Rows.Count != 0)
-                    {
-                        _art = BarcodesTable2.Rows[0].ItemArray.GetValue(0).ToString();
-                        _name = BarcodesTable2.Rows[0].ItemArray.GetValue(1).ToString();
-                        _count = "1";
-                        _barcode = BarcodesTable2.Rows[0].ItemArray.GetValue(2).ToString();
-
-
-                        tb_findBarcode.Text = _art;
-
-                        NiceLabel.SDK.MainWindowViewModel.BarcodeChoose(_name, _art, _barcode, System.Convert.ToInt32(_count), _mode, (NiceLabel.SDK.MainWindowViewModel)DataContext);
-                    }
-
-                    dataGrid_barcodes.ItemsSource = BarcodesTable2.DefaultView;
-                }   
+                    currentBarcode = "";
+                }
             }
-            else
+            catch(System.Exception ex)
             {
-                MessageBox.Show("Не выбран тип этикетки!", "Предупреждение");
-                tb_findBarcode.Text = "";
-            }
-
-            if (currentBarcode != "")
-            {
-                currentBarcode = "";
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -333,36 +347,43 @@ namespace NiceLabel.SDK.DemoApp
 
         private void BarcodeClick()
         {
-            int mode = 0;
-
-            if (checkBox_trans.IsChecked == true)
+            try
             {
-                mode = 0;
+                int mode = 0;
 
-                art = dataGrid_barcodes.Columns[0].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
-                name = dataGrid_barcodes.Columns[1].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
-                count = dataGrid_barcodes.Columns[3].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
-                barcode = dataGrid_barcodes.Columns[4].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
+                if (checkBox_trans.IsChecked == true)
+                {
+                    mode = 0;
 
+                    art = dataGrid_barcodes.Columns[0].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
+                    name = dataGrid_barcodes.Columns[1].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
+                    count = dataGrid_barcodes.Columns[3].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
+                    barcode = dataGrid_barcodes.Columns[4].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
+
+                }
+                else if (checkBox_individual.IsChecked == true)
+                {
+                    mode = 1;
+                }
+                else
+                {
+                    mode = 2;
+                }
+
+                if (mode == 1 || mode == 2)
+                {
+                    art = dataGrid_barcodes.Columns[0].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
+                    name = dataGrid_barcodes.Columns[1].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
+                    count.Text = "1";
+                    barcode = dataGrid_barcodes.Columns[2].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
+                }
+
+                NiceLabel.SDK.MainWindowViewModel.BarcodeChoose(name.Text, art.Text, barcode.Text, System.Convert.ToInt32(count.Text), mode, (NiceLabel.SDK.MainWindowViewModel)DataContext);
             }
-            else if (checkBox_individual.IsChecked == true)
+            catch (System.Exception ex)
             {
-                mode = 1;
+                MessageBox.Show(ex.Message);
             }
-            else
-            {
-                mode = 2;
-            }
-
-            if (mode == 1 || mode == 2)
-            {
-                art = dataGrid_barcodes.Columns[0].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
-                name = dataGrid_barcodes.Columns[1].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
-                count.Text = "1";
-                barcode = dataGrid_barcodes.Columns[2].GetCellContent(dataGrid_barcodes.SelectedItem) as System.Windows.Controls.TextBlock;
-            }
-
-            NiceLabel.SDK.MainWindowViewModel.BarcodeChoose(name.Text, art.Text, barcode.Text, System.Convert.ToInt32(count.Text), mode, (NiceLabel.SDK.MainWindowViewModel)DataContext);
         }
     }
 }

@@ -1508,23 +1508,24 @@ namespace NiceLabel.SDK
         }
 
         public void DrawLabel(string name, string art, string barcode, int count, int mode)
-        {
-            if(mode == 0)
-            {
-                this.LabelFileName = Properties.Settings.Default.PathTransLabel;
-            }
-            else if(mode == 1)
-            {
-                this.LabelFileName = Properties.Settings.Default.PathIndividualLabel;
-            }
-            else
-            {
-                this.LabelFileName = Properties.Settings.Default.PathIndividualWYLabel;
-            }
-
-            this.Label = this.PrintEngine.OpenLabel(this.LabelFileName);
+        {          
             try
             {
+                if (mode == 0)
+                {
+                    this.LabelFileName = Properties.Settings.Default.PathTransLabel;
+                }
+                else if (mode == 1)
+                {
+                    this.LabelFileName = Properties.Settings.Default.PathIndividualLabel;
+                }
+                else
+                {
+                    this.LabelFileName = Properties.Settings.Default.PathIndividualWYLabel;
+                }
+
+                this.Label = this.PrintEngine.OpenLabel(this.LabelFileName);
+
                 this.Label.Variables["art"].SetValue(art);
                 this.Label.Variables["barcode"].SetValue(barcode);
 

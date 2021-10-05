@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="NiceLabel.SDK.DemoApp.MainWindow"
         Style="{StaticResource MainWindowStyle}"
-        WindowStartupLocation="CenterScreen" Title="BarcodesApp" Topmost="True" Loaded="Window_Loaded" Width="1520.85" Height="770" MinWidth="830" MinHeight="800" >
+        WindowStartupLocation="CenterScreen" Title="BarcodesApp" Topmost="True" Loaded="Window_Loaded" Width="1520.85" Height="770" MinWidth="830" MinHeight="730" >
     <Window.Background>
         <ImageBrush ImageSource="1582033554_geometric-landscape-4k_vsthemes_ru-34.jpg"/>
     </Window.Background>
@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="503*" MinWidth="400" />
+            <ColumnDefinition Width="503*" MinWidth="440" />
             <ColumnDefinition Width="9*" MinWidth="9"/>
             <ColumnDefinition Width="993*" MinWidth="400"/>
         </Grid.ColumnDefinitions>
@@ -26,8 +26,8 @@
             <StackPanel Orientation="Horizontal">
                 <Image Source="pack://siteoforigin:,,,/Resources/logo-nicelabel.png" Height="48" Margin="0 4 0 0" RenderOptions.BitmapScalingMode="HighQuality" />
                 <!--<TextBlock Text="{Binding ViewModelName}" Foreground="White" FontWeight="SemiBold" FontSize="26" VerticalAlignment="Center" />-->
-                <TextBlock Text="BarcodesApp" Foreground="White" FontWeight="SemiBold" FontSize="26" VerticalAlignment="Center" />
-                <Button x:Name="BtnSettings" Content="Настройки" Height="Auto" Click="BtnSettings_Click" Margin="0,21,0,14" RenderTransformOrigin="0.5,0.5" Width="42" HorizontalContentAlignment="Center"/>
+                <TextBlock Text="KUKMARA®" Foreground="Red" FontWeight="Bold" FontSize="26" VerticalAlignment="Center" />
+                <Button x:Name="BtnSettings" Content="Настройки" Height="Auto" Click="BtnSettings_Click" RenderTransformOrigin="0.5,0.5" Width="105" HorizontalContentAlignment="Center" Foreground="#FFF0B310" Background="{DynamicResource NiceLabelDarkBlueBrush}" FontSize="15" BorderThickness="0"/>
 
             </StackPanel>
         </Border>
@@ -334,10 +334,11 @@
                 <Label
                        Content="Печать"
                        Style="{StaticResource SectionHeaderLabelStyle}" HorizontalAlignment="Left" FontSize="18" Height="31" />
-                <Grid Margin="0 0 0 0">
+                <Grid Margin="0 0 0 0" Height="70">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100" />
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="184"/>
+                        <ColumnDefinition Width="136"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
@@ -354,7 +355,7 @@
                               Grid.Row="0"
                               ItemsSource="{Binding Printers}"
                               DisplayMemberPath="Name"
-                              SelectedItem="{Binding SelectedPrinter, Mode=TwoWay}" Margin="0,2" />
+                              SelectedItem="{Binding SelectedPrinter, Mode=TwoWay}" Margin="0,2" HorizontalAlignment="Left" Width="184" />
 
                     <Label Grid.Column="0"
                            Grid.Row="1"
@@ -368,15 +369,9 @@
                              Margin="95,10,0,4" 
                              Grid.Row="1" 
                              IsChecked="{Binding PrintAll}" Width="61" HorizontalAlignment="Left" Visibility="Hidden"/>
-
-                    <Label Grid.Column="0"
-                           Grid.Row="2"
-                           Content="Действие:" HorizontalAlignment="Left" FontSize="15" Width="78" />
                     <StackPanel Grid.Column="1"
                                 Grid.Row="2"
                                 Orientation="Horizontal" Margin="0,0,10,5">
-                        <Button Content="Печать"
-                                Command="{Binding PrintLabelCommand}" Height="Auto" Background="#FF76D372" FontSize="20" FontWeight="Bold" Width="182" HorizontalAlignment="Left" />
                         <Button Margin="5 0 0 0"
                                 Content="Print async"
                                 Command="{Binding PrintAsyncLabelCommand}" Visibility="Hidden" />
@@ -406,6 +401,8 @@
                             Width="140"
                             HorizontalAlignment="Left"
                             Command="{Binding OpenPrintToGraphicsWindowCommand}" Visibility="Hidden" Height="Auto" Margin="0,2" />
+                    <Button Content="Печать"
+                                Command="{Binding PrintLabelCommand}" Height="Auto" Background="#FF76D372" FontSize="20" FontWeight="Bold" Width="106" HorizontalAlignment="Left" Grid.Column="2" Margin="8,0,0,3" Grid.RowSpan="2" />
                 </Grid>
 
             </StackPanel>

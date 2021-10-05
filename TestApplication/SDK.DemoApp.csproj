@@ -49,6 +49,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>startup_rocket_spaceship_launch_business_icon_191142.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="SDK.NET.Interface, Version=17.2.0.0, Culture=neutral, PublicKeyToken=865eaf3445b2ea56, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -181,6 +184,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="1582033554_geometric-landscape-4k_vsthemes_ru-34.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="invoice_payment_business_marketing_management_icon_191146.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="earth_planet_globe_environement_world_icon_191963.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="startup_rocket_spaceship_launch_business_icon_191142.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="8_122645.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="8_122645.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

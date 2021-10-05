@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("1582033554_geometric-landscape-4k_vsthemes_ru-34.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("8_122645.png")]
 
 
