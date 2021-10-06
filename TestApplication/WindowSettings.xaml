@@ -65,9 +65,9 @@
                 <Label Grid.Row="1" Content="Индивидуальная коробка:"/>
                 <Label Grid.Row="2" Content="Индивидуальная без&#xA;упаковки:" Margin="0,0,10,-16"/>
 
-                <TextBox x:Name="tb_trans" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" VerticalAlignment="Top" Width="218" MaxLines="2147483647" MinLines="1"/>
-                <TextBox x:Name="tb_individual" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" VerticalAlignment="Top" Width="218"/>
-                <TextBox x:Name="tb_individual_WY" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,6,0,0" VerticalAlignment="Top" Width="218"/>
+                <TextBox x:Name="tb_trans" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" VerticalAlignment="Top" Width="218" MaxLines="2147483647" MinLines="1" IsReadOnly="True"/>
+                <TextBox x:Name="tb_individual" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,5,0,0" VerticalAlignment="Top" Width="218" IsReadOnly="True"/>
+                <TextBox x:Name="tb_individual_WY" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,6,0,0" VerticalAlignment="Top" Width="218" IsReadOnly="True"/>
                 <Button x:Name="btn_trans" Content="Обзор..." Grid.Column="2" HorizontalAlignment="Left" Margin="2,3,0,0" VerticalAlignment="Top" Width="43" Height="26" Click="btn_trans_Click"/>
                 <Button x:Name="btn_indiv" Content="Обзор..." Grid.Column="2" HorizontalAlignment="Left" Margin="2,4,0,0" VerticalAlignment="Top" Width="80" Height="26" Grid.Row="1" Click="btn_indiv_Click"/>
                 <Button x:Name="btn_ind_WY" Content="Обзор..." Grid.Column="2" HorizontalAlignment="Left" Margin="2,4,0,0" VerticalAlignment="Top" Width="80" Height="26" Grid.Row="2" Click="btn_ind_WY_Click"/>

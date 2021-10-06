@@ -139,6 +139,10 @@ namespace NiceLabel.SDK.DemoApp
                 UpdateTable();
                 NiceLabel.SDK.MainWindowViewModel.BarcodeChoose("", "", "", 0, 0, (NiceLabel.SDK.MainWindowViewModel)DataContext);
             }
+            else
+            {
+                checkBox_trans.IsChecked = true;
+            }
         }
 
         private void checkBox_individual_Click(object sender, RoutedEventArgs e)
@@ -151,6 +155,10 @@ namespace NiceLabel.SDK.DemoApp
                 UpdateTable();
                 NiceLabel.SDK.MainWindowViewModel.BarcodeChoose("", "", "", 0, 1, (NiceLabel.SDK.MainWindowViewModel)DataContext);
             }
+            else
+            {
+                checkBox_individual.IsChecked = true;
+            }
         }
 
         private void checkBox_individualWY_Click(object sender, RoutedEventArgs e)
@@ -162,6 +170,10 @@ namespace NiceLabel.SDK.DemoApp
 
                 UpdateTable();
                 NiceLabel.SDK.MainWindowViewModel.BarcodeChoose("", "", "", 0, 2, (NiceLabel.SDK.MainWindowViewModel)DataContext);
+            }
+            else 
+            {
+                checkBox_individualWY.IsChecked = true;
             }
         }
 

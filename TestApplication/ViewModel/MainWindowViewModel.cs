@@ -1511,33 +1511,43 @@ namespace NiceLabel.SDK
         {          
             try
             {
-                if (mode == 0)
+                bool flagToContinue = true;
+
+                if (mode == 0 && Properties.Settings.Default.PathTransLabel!="")
                 {
                     this.LabelFileName = Properties.Settings.Default.PathTransLabel;
                 }
-                else if (mode == 1)
+                else if (mode == 1 && Properties.Settings.Default.PathIndividualLabel != "")
                 {
                     this.LabelFileName = Properties.Settings.Default.PathIndividualLabel;
                 }
-                else
+                else if (Properties.Settings.Default.PathIndividualWYLabel != "")
                 {
                     this.LabelFileName = Properties.Settings.Default.PathIndividualWYLabel;
                 }
+                else { flagToContinue = false; }
 
-                this.Label = this.PrintEngine.OpenLabel(this.LabelFileName);
-
-                this.Label.Variables["art"].SetValue(art);
-                this.Label.Variables["barcode"].SetValue(barcode);
-
-                if (mode == 0)
+                if (flagToContinue)
                 {
-                    this.Label.Variables["count"].SetValue(Convert.ToString(count));
+                    this.Label = this.PrintEngine.OpenLabel(this.LabelFileName);
+
+                    this.Label.Variables["art"].SetValue(art);
+                    this.Label.Variables["barcode"].SetValue(barcode);
+
+                    if (mode == 0)
+                    {
+                        this.Label.Variables["count"].SetValue(Convert.ToString(count));
+                    }
+
+                    this.Label.Variables["name"].SetValue(name);
+
+                    this.UpdateVariableValues();
+                    this.NotifyPropertyChanged("Preview");
                 }
-
-                this.Label.Variables["name"].SetValue(name);
-
-                this.UpdateVariableValues();
-                this.NotifyPropertyChanged("Preview");
+                else 
+                {
+                    MessageBox.Show("Некорректные настройки");
+                }
             }
             catch (Exception ex)
             {
